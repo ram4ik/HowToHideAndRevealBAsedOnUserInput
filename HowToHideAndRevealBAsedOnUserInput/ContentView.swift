@@ -9,8 +9,46 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var isFav = false
     var body: some View {
-        Text("Hello World")
+        NavigationView {
+            VStack {
+                Toggle(isOn: $isFav) {
+                    Text("Show favorite only")
+                    .padding()
+                }
+                List {
+                    HStack {
+                        Text("Dogs")
+                        Spacer()
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                    }
+                    if isFav {
+                        HStack {
+                            Text("Cats")
+                            Spacer()
+                            Image(systemName: "star.fill")
+                                .foregroundColor(.black)
+                        }
+                    }
+                    HStack {
+                        Text("Monkeys")
+                        Spacer()
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                    }
+                    if isFav {
+                        HStack {
+                            Text("Rats")
+                            Spacer()
+                            Image(systemName: "star.fill")
+                                .foregroundColor(.black)
+                        }
+                    }
+                }.animation(Animation.default)
+            }
+        }.font(.largeTitle)
     }
 }
 
